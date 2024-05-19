@@ -50,14 +50,17 @@ const Signup = () => {
       </p>
       {error && <p className="text-red-600 mt-8 text-center">{error}</p>}
       <form onSubmit={handleSubmit(create)}>
-            <input label="Full Name: "
+        <div className="space-y-2">
+        <p>Full Name </p>
+        <input label="Full Name: "  className="w-full p-2"
             placeholder="Enter your full name"
             {...register('name',{
                 required:true,
                
             })}/>
+<p>Email </p>
 
-<input label="Email: "
+<input label="Full Name: "  className="w-full p-2"
             placeholder="Enter your email"
             {...register('email',{
                 required:true,
@@ -66,14 +69,16 @@ const Signup = () => {
                     "Email address must be a valid address",
                 }
             })}/>
-
-            <input label="Password :"
+<p>Password </p>
+            <input label="Password :" className="w-full p-2"
             placeholder="Enter your password"
             type="password"
             {...register('password',{
                 required:true
             })}/>
             <Button type='submit' className='w-full'>Create Account</Button>
+        </div>
+           
       </form>
       </div>
       

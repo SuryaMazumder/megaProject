@@ -16,8 +16,8 @@ function PostForm({post}) {
  })
 
  const navigate = useNavigate();
-    const userData = useSelector((state) => state.auth.userData);
-    const submit=async (data)=>{
+ const userData = useSelector((state) => state.auth.userData);
+const submit=async (data)=>{
 
       if(post){
        const file= data.image[0]?service.uploadFile(data.image[0]):null 
@@ -38,9 +38,10 @@ function PostForm({post}) {
          if(file){
             const fileId=file.$id
             data.featuredImage=fileId
+            console.log('fdfdfdfddf',userData)
+
            const dbPost= await service.createPost({
-               ...data,
-               userId:userData.$id,
+            ...data, userId: userData.$id
             })
 
             if(dbPost){
@@ -105,12 +106,7 @@ function PostForm({post}) {
                />
            </div>
        )}
-       <Select
-           options={["active", "inactive"]}
-           label="Status"
-           className="mb-4"
-           {...register("status", { required: true })}
-       />
+    
        <Button type="submit" bgColor={post ? "bg-green-500" : undefined} className="w-full">
            {post ? "Update" : "Submit"}
        </Button>

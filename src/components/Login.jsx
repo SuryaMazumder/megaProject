@@ -17,6 +17,7 @@ const Login = () => {
         setError('')
         try {
          const session=await authService.login(data)
+         console.log('SESSSION',session)
          if(session){
             const userData=await authService.getCurrentUser()
             if(userData){
