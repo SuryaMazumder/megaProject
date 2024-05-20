@@ -62,7 +62,7 @@ function Post() {
                 </div>
                 <div className="browser-css">
                     {parse(post.content)}
-            </div>
+                    </div>
         </Container>
     </div>
    ):null;

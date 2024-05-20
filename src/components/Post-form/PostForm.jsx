@@ -12,6 +12,7 @@ function PostForm({post}) {
       slug: post?.$id || "",
       content: post?.content || "",
       status: post?.status || "active",
+      featuredimage:post?.featuredimage|| '',
     }
  })
 
@@ -38,10 +39,10 @@ const submit=async (data)=>{
          if(file){
             const fileId=file.$id
             data.featuredImage=fileId
-            console.log('fdfdfdfddf',userData)
-
            const dbPost= await service.createPost({
-            ...data, userId: userData.$id
+            ...data,featuredImage:file?file.$id:undefined
+            ,
+            userId:userData.$id
             })
 
             if(dbPost){
@@ -106,7 +107,12 @@ const submit=async (data)=>{
                />
            </div>
        )}
-    
+     <Select
+                    options={["active", "inactive"]}
+                    label="Status"
+                    className="mb-4"
+                    {...register("status", { required: true })}
+                />
        <Button type="submit" bgColor={post ? "bg-green-500" : undefined} className="w-full">
            {post ? "Update" : "Submit"}
        </Button>
